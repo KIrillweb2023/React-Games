@@ -1,0 +1,35 @@
+.main {
+    &-welcome {
+        font-size: 22px;
+        color: #a1a1a1;
+    }
+    &-search {
+        height: 55px;
+        width: 450px;
+        position: relative;
+        border: 1px solid #505050;
+        border-radius: 10px;
+        &-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &-input {
+            background: none;
+            height: 100%;
+            width: 100%;
+            padding: 0px 10px 0px 60px;
+            color: #838383;
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
+    &-notify {
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        cursor: pointer;
+        transform: translateY(-50%);
+    }
+}

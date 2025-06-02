@@ -1,0 +1,21 @@
+.main {
+    width: 95%;
+    padding: 10px 30px;
+    overflow-y: scroll;
+    &-header {
+        border-bottom: 1px solid #2e2e2e;
+        display: flex;
+        align-items: center;
+        column-gap: 60px;
+        position: relative;
+        width: 100%;
+        padding: 10px 0;
+        
+    }
+    &-title {
+        margin-top: 40px;
+        font-size: 32px;
+        font-weight: 700;
+        color: #fff;
+    }
+}

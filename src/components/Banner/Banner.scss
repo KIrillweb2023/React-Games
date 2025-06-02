@@ -1,0 +1,19 @@
+.main {
+    &-banner {
+        background: #000000;
+        padding: 60px 40px;
+        margin-top: 40px;
+        border-radius: 20px;
+        &-subtitle {
+            font-size: 30px;
+            // margin-top: 40px;
+            color: #fff;
+        }
+        &-description {
+            font-size: 22px;
+            color: #888888;
+            margin-top: 15px;
+        }
+    }
+
+}
