@@ -1,0 +1,29 @@
+.main {
+    &-portfolio {
+        &-profile {
+             &_stars {
+                width: 100%;
+                padding: 15px 20px;
+                display: flex;
+                column-gap: 20px;
+                align-items: center;
+                margin-top: 20px;
+                background: #1f1f1f;
+                border-radius: 10px;
+                &-text {
+                    display: flex;
+                    flex-direction: column; 
+                    span {
+                        font-weight: 600;
+                        color: #5e5e5e;
+                    }
+                    h4 {
+                        margin-top: 5px;
+                        font-size: 24px;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}

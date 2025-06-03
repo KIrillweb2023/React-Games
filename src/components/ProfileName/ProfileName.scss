@@ -1,0 +1,30 @@
+.main {
+    &-portfolio {
+        &-profile {
+             &_info {
+                display: flex;
+                align-items: center;
+                column-gap: 20px;
+            }
+
+
+            &_img {
+                background: #351f42;
+                padding: 10px;
+                border-radius: 100%;
+            }
+            &_name {
+                color: #fff;
+                font-weight: 700;
+                font-size: 22px;
+            }
+            &_stage {
+                font-weight: 700;
+                text-transform: uppercase;
+                color: #3e5086;
+                margin-top: 5px;
+                font-size: 14px;
+            }
+        }
+    }
+}

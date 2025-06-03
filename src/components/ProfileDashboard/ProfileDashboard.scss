@@ -1,0 +1,28 @@
+.main {
+    &-portfolio {
+        &-profile {
+             &_counts {
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+                width: 100%;
+                margin-top: 20px;
+                &-item {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+                &-text {
+                    font-size: 16px;
+                    color: #535353;
+                    font-weight: 600;
+                }
+                &-num {
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #565656;
+                }
+            }
+        }
+    }
+}

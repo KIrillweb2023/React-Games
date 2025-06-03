@@ -12,6 +12,23 @@
   display: flex;
 }
 
+::-webkit-scrollbar {
+  width: 12px; /* Ширина скроллбара */
+}
+
+::-webkit-scrollbar-track {
+  background: #333; /* Цвет фона дорожки */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666; /* Цвет ползунка */
+  border-radius: 6px; /* Закругление углов ползунка */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888; /* Цвет ползунка при наведении */
+}
+
 ul, ol {
   list-style-type: none
 }
