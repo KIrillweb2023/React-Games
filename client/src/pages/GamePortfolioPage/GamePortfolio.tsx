@@ -15,6 +15,11 @@ export const GamePortfolio = () => {
                             Список моих игр
                         </h5>
                         <ProfileGameItem/>
+                        <ProfileGameItem/>
+                        <ProfileGameItem/>
+                        <ProfileGameItem/>
+                        <ProfileGameItem/>
+                        <ProfileGameItem/>
                     </div>
                 </div>
             </div>

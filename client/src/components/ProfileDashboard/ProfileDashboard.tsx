@@ -13,6 +13,10 @@ export const ProfileDashboard = () => {
                     <span className="main-portfolio-profile_counts-num">346</span>
                 </li>
                 <li className="main-portfolio-profile_counts-item">
+                    <p className="main-portfolio-profile_counts-text">Кол-во друзей:</p>
+                    <span className="main-portfolio-profile_counts-num">47</span>
+                </li>
+                <li className="main-portfolio-profile_counts-item">
                     <p className="main-portfolio-profile_counts-text">Мой уровень:</p>
                     <span className="main-portfolio-profile_counts-num">24</span>
                 </li>
