@@ -8,6 +8,7 @@ import { GamePortfolio } from "../../pages/GamePortfolioPage/GamePortfolio"
 import { MainHeader } from "../MainHeader/MainHeader"
 
 export const App = () => {
+  console.log(import.meta.env.VITE_API_KEY)
   return (
     <>
       <div className="app">
@@ -34,4 +35,3 @@ export const App = () => {
   )
 }
 
-export default App

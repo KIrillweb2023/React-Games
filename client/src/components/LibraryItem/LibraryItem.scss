@@ -1,0 +1,99 @@
+.main {
+    &-library {
+        &-games {
+            &_item {
+                width: 100%;
+                padding: 15px 10px; 
+                transition: 0.3s ease-in-out;
+                background: #00000000;
+                border-radius: 10px;
+                border: 1px solid #2e2e2e;
+                &:hover {
+                    background: #202020;
+                    border: 1px solid #2e2e2e00;
+
+                }
+
+            }
+            &_star {
+                display: flex;
+                align-items: center;
+                column-gap: 10px;
+                cursor: pointer;
+                &-icon {
+                    width: 20px;
+                }
+                &-text {
+                    font-weight: 600;
+                    color: #fff;
+                    font-size: 14px;
+                }
+            }
+            &-buttons {
+                display: flex;
+                column-gap: 10px;
+                margin-top: 20px;
+            }
+            &_link {
+                width: 45px;
+                height: 45px;
+                border-radius: 10px;
+                outline: none;
+                border: none;
+                cursor: pointer;
+                background: #ffffff;
+                color: #fff;
+                font-weight: 600;
+                font-size: 18px;
+                transition: 0.1s ease-in-out;
+                &:hover {
+                    background: #d3796d;
+                }
+            }
+            &_btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                column-gap: 10px;
+                height: 45px;
+                padding: 0 10px;
+                border-radius: 10px;
+                background: #3c4074;
+                transition: 0.3s ease-in-out;
+                cursor: pointer;
+                // margin-top: 20px;
+                &:hover {
+                    background: #535bc9;
+                }
+                img {
+                    width: 25px;
+                    height: 25px;
+                    border-radius: 0;
+                }
+                &-text {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: #fff;
+                }   
+                // &-text {
+
+                // }
+            }
+            &-title {
+                font-size: 20px;
+                margin-top: 10px;
+                color: #fff;
+            }
+            &-subtitle {
+                font-size: 14px;
+                font-weight: 500;
+                color: #636363;
+            }
+            &_image {
+                width: 100%;
+                border-radius: 10px;
+
+            }
+        }
+    }
+}

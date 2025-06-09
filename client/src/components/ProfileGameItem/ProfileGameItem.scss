@@ -1,18 +1,42 @@
 .main {
     &-portfolio {
         &-games {
+            .reserve {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                 .title-reserve {
+                    font-size: 18px;
+                    text-align: center;
+                    color: #fff;
+                    margin-top: 30px;
+                }
+                .descr-reserve {
+                    font-size: 16px;
+                    color: #9b9b9b;
+                    margin-top: 5px;
+                }
+            }
              &_item {
-                width: 100%;
+                // width: 19%;
                 height: auto;
                 background: #242424;
                 border-radius: 10px;
-                padding: 10px 15px;
+                padding: 15px 15px;
                 display: flex;
-                align-items: center;
+                flex-direction: column;
+                align-items: flex-start;
                 column-gap: 30px;
                 position: relative;
+                cursor: pointer;
+                transition: 0.3s ease-in-out;
+                &:hover {
+                    background: #6b3ceb38;
+                }
+               
                 &-img {
-                    width: 200px;
+                    width: 220px;
                     border-radius: 10px;
                     object-fit: cover;
                 }
@@ -23,6 +47,7 @@
                     .name {
                         font-size: 20px;
                         color: #fff;
+                        margin-top: 10px;
                     }
                     .subname {
                         font-size: 16px;
@@ -30,7 +55,7 @@
                         font-weight: 700;
                     }
                     .people {
-                        font-size: 16px;
+                        font-size: 14px;
                         color: #6b3ceb;
                         font-weight: 700;
                         margin-top: 20px;
@@ -40,12 +65,9 @@
                     width: auto;
                     height: auto;
                     padding: 10px 20px;
-                    position: absolute;
-                    right: 15px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    z-index: 10;
+                    margin-top: 20px;
                     border-radius: 7px;
+                    width: 100%;
                     color: #fff;
                     font-weight: 700;
                     font-size: 16px;

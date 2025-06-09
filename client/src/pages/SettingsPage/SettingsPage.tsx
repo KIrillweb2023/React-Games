@@ -1,7 +1,13 @@
+import { TitlePages } from "../../components/TitlePages/TitlePages"
+
 export const SettingsPage = () => {
     return (
         <>
-            <h3>SettingsPage</h3>
+            <TitlePages title="Настройки"/>
+
+            <div className="main-settings">
+            
+            </div>
         </>
     )
 }

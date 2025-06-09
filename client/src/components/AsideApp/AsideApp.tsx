@@ -1,12 +1,7 @@
-import { Link, useLocation } from "react-router-dom"
-// import ROUTES from "../../routes/ro"
-// import routes from "../../routes/routes"
-import { routes } from "../../routes/routes";
 import "./AsideApp.scss";
+import { AsideRouters } from "../AsideRouters/AsideRouters";
 
 export const AsideApp = () => {
-    const locate = useLocation();
-    console.log(locate.pathname)
     return (
         <>
             <div className="aside">
@@ -15,17 +10,7 @@ export const AsideApp = () => {
                         <img src="/logo-react.svg" className="aside-logo-text" alt="logotype" width={30} height={30} />
                     </div>
                     <ul className="aside-list">
-                        {
-                            routes.map((item, index) => {
-                                return (
-                                    <li key={index} className={`aside-list-item ${item.path === locate.pathname ? "aside-list-item_active" : ""} `}>
-                                        <Link to={item.path}>
-                                            <img src={item.sourceImage} alt={item.altImage} width={30} height={30} />
-                                        </Link>
-                                    </li>
-                                )
-                            })
-                        }
+                        <AsideRouters/>
                     </ul>
 
                     <div className="aside-accaunt">
