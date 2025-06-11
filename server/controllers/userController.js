@@ -41,16 +41,16 @@ export class UserController {
 
     async login(req, res, next) {
         try {
-            const { email, nikname, password } = req.body;
+            const { email, password } = req.body;
 
             const user = await User.findOne({ where: { email } });
             if(!user) {
-                res.json("Пользователь не найден!");
+                res.json({ message: "Пользователь не найден!" });
             }
 
             let comparePassword = bcrypt.compareSync(password, user.password);
             if(!comparePassword) {
-                res.json("Пароль неверный")
+                res.json({ message: "Пароль неверный" })
             }
             
 

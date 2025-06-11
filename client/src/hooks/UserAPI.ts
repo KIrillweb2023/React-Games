@@ -1,15 +1,16 @@
+import { AuthLayoutValue } from "../types/AuthenficateProps.types";
 import { $authHost, $host } from "./init-axios";
 import { jwtDecode } from "jwt-decode";
 
 
-export const registration = async ({email, nikname, password}: { email: string, nikname: string, password: string }) => {
+export const registration: React.FC<AuthLayoutValue> = async ({email, nikname, password}) => {
     const { data } = await $host.post("/user/registration", { email, nikname, password });
     localStorage.setItem("token", data.token)
     return jwtDecode(data.token)
 }
 
-export const login = async ({email, nikname, password}: { email: string, nikname: string, password: string }) => {
-    const { data } = await $host.post("/user/login", { email, nikname, password });
+export const login: React.FC<AuthLayoutValue> = async ({email, password}) => {
+    const { data } = await $host.post("/user/login", { email, password });
     localStorage.setItem("token", data.token)
     return jwtDecode(data.token)
 }

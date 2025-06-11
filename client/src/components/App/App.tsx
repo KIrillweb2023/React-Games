@@ -6,9 +6,20 @@ import { LibraryPage } from "../../pages/LibraryPage/LibraryPage"
 import { FriendsPage } from "../../pages/FriendsPage/FriendsPage"
 import { GamePortfolio } from "../../pages/GamePortfolioPage/GamePortfolio"
 import { MainHeader } from "../MainHeader/MainHeader"
+import { useEffect } from "react"
+import { auth } from "../../hooks/UserAPI"
+import { store } from "../../store/store"
+
+
 
 export const App = () => {
-  console.log(import.meta.env.VITE_API_KEY)
+
+  const { isVerifyToken } = store()
+
+  useEffect(() => {
+    isVerifyToken()
+  }, [])
+
   return (
     <>
       <div className="app">
