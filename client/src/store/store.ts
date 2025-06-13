@@ -1,13 +1,15 @@
 import { create } from "zustand";
 import { auth, login, registration } from "../hooks/UserAPI";
 import { UserStore } from "../types/UserStore.types";
+import { UserData } from "../types/AuthenficateProps.types";
 
 
 export const store = create<UserStore>((set) => ({
     dataUser: {
         user: null,
         error: null,
-        isLoading: false
+        isLoading: false,
+        isLogin: false
     },
 
     isLoginAuth: async ({ email, password }) => {
@@ -22,10 +24,19 @@ export const store = create<UserStore>((set) => ({
                     user: response,
                     error: null,
                     isLoading: false,
+                    isLogin: true
                 }
             })
-        } catch(err) {
-            console.log(err)
+        } catch(err: any) {
+             set({
+                dataUser: {
+                    ...store.getState().dataUser,
+                    error: err.message,
+                    isLoading: false,
+                    isLogin: false 
+                }
+            });
+            throw err;  
         }
     },
 
@@ -34,16 +45,26 @@ export const store = create<UserStore>((set) => ({
             set((state) => ({ dataUser: { ...state.dataUser, isLoading: true, error: null } }))
 
             const response = await registration({ email, password, nikname })
+            console.log(response)
 
             set({
                 dataUser: {
                     user: response,
                     error: null,
-                    isLoading: false
+                    isLoading: false,
+                    isLogin: true
                 }
             })
-       } catch (error) {
-            console.log(error)
+       } catch (error: any) {
+            set({
+                dataUser: {
+                    ...store.getState().dataUser,
+                    error: error.message,
+                    isLoading: false,
+                    isLogin: false 
+                }
+            });
+            throw error;  
        }
     },
 
@@ -52,18 +73,29 @@ export const store = create<UserStore>((set) => ({
             set((state) => ({ dataUser: { ...state.dataUser, isLoading: true, error: null } }))
             const response = await auth();
             
-            console.log(response)
+            if (!response) {
+                throw new Error('Ваша сессия истекла! Перезайдите на аккаунт');
+            }
 
             set({
                 dataUser: {
-                    user: response,
+                    user: response as UserData,
                     error: null,
-                    isLoading: false
+                    isLoading: false,
+                    isLogin: true
                 }
             })
 
-        } catch (error) {
-            console.log(error)
+        } catch (error: any) {
+            set({
+                dataUser: {
+                    ...store.getState().dataUser,
+                    error: error.message,
+                    isLoading: false,
+                    isLogin: false 
+                }
+            });
+            throw error;                                                    
         }
     }
     

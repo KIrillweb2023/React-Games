@@ -6,6 +6,7 @@ export interface UserStore {
         user: UserData | null;
         error: string | null;
         isLoading: boolean;
+        isLogin: boolean;
     };
 
     isLoginAuth: (credentials: AuthLayoutValue) => void;

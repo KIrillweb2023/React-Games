@@ -17,9 +17,9 @@ async function testConnection(){
   try {
     await DataBaseQuery.authenticate();
     await DataBaseQuery.sync()
-    console.log('Connection has been established successfully.');
+    console.log('Успешное подключение к базе данных!');
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    console.error('При подключении базы данных произошла ошибка!', error);
   }
 }
 
