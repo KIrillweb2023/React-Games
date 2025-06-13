@@ -4,8 +4,11 @@ import { RegistrationField } from "../../components/RegistrationField/Registrati
 import { usePlayGamesReact } from "../../service/PlayGamesReact";
 import "./AuthPage.scss";
 
+import ReactLogo from "../../assets/AsideIcons/logoIcon/LogoReact.svg";
 
-export const AuthPage = () => {
+
+
+const AuthPage = () => {
     const { setAuthValues, authRequest, isLogin, setIsLogin, AuthValues } = usePlayGamesReact()
 
     const HandleEventForm = (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +29,7 @@ export const AuthPage = () => {
                         <div className="auth-form-header">
                             <h3 className="auth-form-title">{ isLogin ? "Вход" : "Регистрация" }</h3>
                             <div className="auth-form-login" onClick={() => setIsLogin(!isLogin)}>
-                                <img src="/logo-react.svg" alt="" width={30} height={30} />
+                                <img src={ReactLogo} alt="" width={30} height={30} />
                             </div>
                         </div>
 
@@ -51,3 +54,5 @@ export const AuthPage = () => {
         </>
     )
 }
+
+export default AuthPage

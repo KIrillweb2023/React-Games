@@ -2,7 +2,9 @@ import { ProfileAside } from "../../components/ProfileAside/ProfileAside";
 import { ProfileGameItem } from "../../components/ProfileGameItem/ProfileGameItem";
 import { TitlePages } from "../../components/TitlePages/TitlePages"
 import "./GamePortfolio.scss";
-export const GamePortfolio = () => {
+
+import AccauntIcon from "../../assets/AsideIcons/logoIcon/LogoReact.svg"
+ const GamePortfolio = () => {
 
     return (
         <>
@@ -16,7 +18,7 @@ export const GamePortfolio = () => {
                         </h5> */}
                         <ProfileGameItem/>
                         <div className="main-portfolio-games_item reserve">
-                            <img src="/logo-react.svg" alt="" width={100} />
+                            <img src={AccauntIcon} alt="" width={100} />
                             <h3 className="title-reserve">Ваши пройденные игры,</h3>
                             <p className="descr-reserve">влияют на вашу статистику</p>
                         </div>
@@ -27,3 +29,5 @@ export const GamePortfolio = () => {
         </>
     )
 }
+
+export default GamePortfolio

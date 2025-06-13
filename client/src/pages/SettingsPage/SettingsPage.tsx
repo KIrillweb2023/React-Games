@@ -1,6 +1,6 @@
 import { TitlePages } from "../../components/TitlePages/TitlePages"
 
-export const SettingsPage = () => {
+const SettingsPage = () => {
     return (
         <>
             <TitlePages title="Настройки"/>
@@ -11,3 +11,5 @@ export const SettingsPage = () => {
         </>
     )
 }
+
+export default SettingsPage;

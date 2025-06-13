@@ -1,10 +1,12 @@
 import { RegistrationFieldProps } from "../../types/AuthenficateProps.types"
 
+import ReactLogo from "../../assets/AsideIcons/logoIcon/LogoReact.svg";
+
 export const RegistrationField: React.FC<RegistrationFieldProps> = ({handleEventForm, registrationValues}) => {
     return (
         <>
             <div className="auth-form-layout">
-                <img src="/logo-react.svg" width={25} height={25} alt="" className="auth-form-layout_icon"/>
+                <img src={ReactLogo} width={25} height={25} alt="" className="auth-form-layout_icon"/>
                 <div className="auth-form-layout_contact">
                     <span>Ваш никнейм</span>
                     <input 
@@ -16,7 +18,7 @@ export const RegistrationField: React.FC<RegistrationFieldProps> = ({handleEvent
                 </div>
             </div>
             <div className="auth-form-layout">
-                <img src="/logo-react.svg" width={25} height={25} alt="" className="auth-form-layout_icon"/>
+                <img src={ReactLogo} width={25} height={25} alt="" className="auth-form-layout_icon"/>
                 <div className="auth-form-layout_contact">
                     <span>Ваша почта</span>
                     <input 
@@ -28,7 +30,7 @@ export const RegistrationField: React.FC<RegistrationFieldProps> = ({handleEvent
                 </div>
             </div>
             <div className="auth-form-layout">
-                <img src="/logo-react.svg" width={25} height={25} alt="" className="auth-form-layout_icon"/>
+                <img src={ReactLogo} width={25} height={25} alt="" className="auth-form-layout_icon"/>
                 <div className="auth-form-layout_contact">
                     <span>Ваш пароль</span>
                     <input 
@@ -40,7 +42,7 @@ export const RegistrationField: React.FC<RegistrationFieldProps> = ({handleEvent
                 </div>
             </div>
             <div className="auth-form-layout">
-                <img src="/logo-react.svg" width={25} height={25} alt="" className="auth-form-layout_icon"/>
+                <img src={ReactLogo} width={25} height={25} alt="" className="auth-form-layout_icon"/>
                 <div className="auth-form-layout_contact">
                     <span>Подтверждение пароля</span>
                     <input type="text" placeholder="****wer" />

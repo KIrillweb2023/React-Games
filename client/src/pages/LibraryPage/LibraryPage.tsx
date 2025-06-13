@@ -4,7 +4,7 @@ import "./LibraryPage.scss";
 import { LibraryItem } from "../../components/LibraryItem/LibraryItem";
 import { CatalogItemsData } from "./data/Catalog-data";
 
-export const LibraryPage = () => {
+const LibraryPage = () => {
     return (
         <>
             <div className="main-library">
@@ -36,3 +36,5 @@ export const LibraryPage = () => {
         </>
     )
 }
+
+export default LibraryPage;

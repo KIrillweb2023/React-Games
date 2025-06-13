@@ -1,10 +1,13 @@
-import { LoginFieldProps } from "../../types/AuthenficateProps.types"
+import { LoginFieldProps } from "../../types/AuthenficateProps.types";
+
+import ReactLogo from "../../assets/AsideIcons/logoIcon/LogoReact.svg";
+
 
 export const LoginField: React.FC<LoginFieldProps> = ({ handleEventForm, loginValues }) => {
     return (
         <>
             <div className="auth-form-layout">
-                <img src="/logo-react.svg" width={25} height={25} alt="" className="auth-form-layout_icon"/>
+                <img src={ReactLogo} width={25} height={25} alt="" className="auth-form-layout_icon"/>
                 <div className="auth-form-layout_contact">
                     <span>Ваша почта</span>
                     <input 
@@ -16,7 +19,7 @@ export const LoginField: React.FC<LoginFieldProps> = ({ handleEventForm, loginVa
                 </div>
             </div>
             <div className="auth-form-layout">
-                <img src="/logo-react.svg" width={25} height={25} alt="" className="auth-form-layout_icon"/>
+                <img src={ReactLogo} width={25} height={25} alt="" className="auth-form-layout_icon"/>
                 <div className="auth-form-layout_contact">
                     <span>Ваш пароль</span>
                     <input 

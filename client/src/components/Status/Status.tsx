@@ -1,5 +1,9 @@
 import "./Status.scss";
 
+import UsersIcon from "../../assets/MainStatusBarIcon/users.svg"
+import UsersOnlineIcon from "../../assets/MainStatusBarIcon/userOnline.svg"
+import StatusIcon from "../../assets/MainStatusBarIcon/status.svg"
+
 export const Status = () => {
     return (
         <>
@@ -8,7 +12,7 @@ export const Status = () => {
 
                     <div className="main-status-item">
                         <div className="main-status-item_icon">
-                            <img src="/status.svg" alt="status" width={50} height={50} />
+                            <img src={StatusIcon} alt="status" width={50} height={50} />
                         </div>
                         <div className="main-status-item_text">
                             <h4>345</h4>
@@ -17,7 +21,7 @@ export const Status = () => {
                     </div>
                     <div className="main-status-item">
                         <div className="main-status-item_icon">
-                            <img src="/users.svg" alt="status" width={50} height={50} />
+                            <img src={UsersIcon} alt="status" width={50} height={50} />
                         </div>
                         <div className="main-status-item_text">
                             <h4>1244</h4>
@@ -26,7 +30,7 @@ export const Status = () => {
                     </div>
                     <div className="main-status-item">
                         <div className="main-status-item_icon">
-                            <img src="/userOnline.svg" alt="status" width={50} height={50} />
+                            <img src={UsersOnlineIcon} alt="status" width={50} height={50} />
                         </div>
                         <div className="main-status-item_text">
                             <h4>13245</h4>
