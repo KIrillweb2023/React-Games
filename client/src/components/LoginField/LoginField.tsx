@@ -1,9 +1,12 @@
-import { LoginFieldProps } from "../../types/AuthenficateProps.types";
+import { AuthLayoutValue } from "../../types/AuthenficateProps.types";
 
 import ReactLogo from "../../assets/AsideIcons/logoIcon/LogoReact.svg";
 
 
-export const LoginField: React.FC<LoginFieldProps> = ({ handleEventForm, loginValues }) => {
+export const LoginField = ({ handleEventForm, loginValues }: {
+    handleEventForm: any,
+    loginValues: AuthLayoutValue
+}) => {
     return (
         <>
             <div className="auth-form-layout">

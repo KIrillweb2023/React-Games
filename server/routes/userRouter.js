@@ -6,9 +6,9 @@ const userControllerClass = new UserController()
 import { ValidateTokenUser } from "../middleware/authMiddleware.js";
 const { validateToken } = new ValidateTokenUser();
 
-UserRoute.post("/registration", userControllerClass.registration)
-UserRoute.post("/login", userControllerClass.login)
-UserRoute.get("/auth", validateToken, userControllerClass.auth)
+UserRoute.post("/user/registration", userControllerClass.registration)
+UserRoute.post("/user/login", userControllerClass.login)
+UserRoute.get("/user/auth", validateToken, userControllerClass.auth)
 
 export {
     UserRoute

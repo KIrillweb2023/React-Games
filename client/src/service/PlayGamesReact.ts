@@ -1,13 +1,20 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { MAIN_APP_ROUTES } from "../routes/routes";
 import { store } from "../store/store";
+import { PortfolioStore } from "../store/portfolio.store";
 import { AuthLayoutValue } from "../types/AuthenficateProps.types";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { PortfolioGameType } from "../types/PortfolioGame.types";
+
+const API_SLIDER_URL = "https://dd48abe606c02835.mokky.dev/SliderItems";
 
 
 export const usePlayGamesReact = () => {
-    const { isLoginAuth, isRegistrationAuth, dataUser } = store();
+    const { isLoginAuth, isRegistrationAuth } = store();
+    const { useAddGame } = PortfolioStore();
     const [isLogin, setIsLogin] = useState<boolean>(false);
+    const [loader, setLoader] = useState(false);
     const navigate = useNavigate();
 
     const [AuthValues, setAuthValues] = useState<AuthLayoutValue>({
@@ -26,15 +33,8 @@ export const usePlayGamesReact = () => {
             } else {
                 await isRegistrationAuth({ ...AuthValues })
             }
-            // console.log(dataUser)
 
             setAuthValues(({ email: "", nikname: "", password: "" }))
-
-            console.log(dataUser)
-
-            if(dataUser.isLogin) {
-                console.log(dataUser.isLogin)
-            }
 
             navigate(MAIN_APP_ROUTES.HOME_PAGE)
         } catch(err: any) {
@@ -43,7 +43,37 @@ export const usePlayGamesReact = () => {
             
     }
 
+    const getGamesSlider = async () => {
+        setLoader(true)
+        try {
+            const { data } = await axios.get(API_SLIDER_URL);
+
+            setTimeout(() => {
+                setLoader(false)
+            }, 2000)
+            return data;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const usePortfolioGame: React.FC<PortfolioGameType> = async (values): Promise<any> => {
+        try {
+            await useAddGame({ ...values })
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return {
-        authRequest, setAuthValues, isLogin, AuthValues, setIsLogin
+        authRequest, 
+        setAuthValues, 
+        isLogin, 
+        AuthValues, 
+        setIsLogin, 
+        getGamesSlider, 
+        loader,
+        usePortfolioGame
     }
 }

@@ -1,8 +1,11 @@
-import { RegistrationFieldProps } from "../../types/AuthenficateProps.types"
+import { AuthLayoutValue } from "../../types/AuthenficateProps.types"
 
 import ReactLogo from "../../assets/AsideIcons/logoIcon/LogoReact.svg";
 
-export const RegistrationField: React.FC<RegistrationFieldProps> = ({handleEventForm, registrationValues}) => {
+export const RegistrationField = ({handleEventForm, registrationValues}: {
+    handleEventForm: any,
+    registrationValues: AuthLayoutValue
+}) => {
     return (
         <>
             <div className="auth-form-layout">

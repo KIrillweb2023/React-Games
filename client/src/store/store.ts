@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { auth, login, registration } from "../hooks/UserAPI";
+import { RegistrationApi, LoginApi, AuthApi } from "../api/user.api";
 import { UserStore } from "../types/UserStore.types";
 import { UserData } from "../types/AuthenficateProps.types";
 
@@ -16,7 +16,7 @@ export const store = create<UserStore>((set) => ({
         try {
             set((state) => ({ dataUser: { ...state.dataUser, isLoading: true, error: null } }));
 
-            const response = await login({ email, password })
+            const response = await LoginApi({ email, password })
             console.log(response)
 
             set({
@@ -44,7 +44,7 @@ export const store = create<UserStore>((set) => ({
        try {
             set((state) => ({ dataUser: { ...state.dataUser, isLoading: true, error: null } }))
 
-            const response = await registration({ email, password, nikname })
+            const response = await RegistrationApi({ email, password, nikname })
             console.log(response)
 
             set({
@@ -71,7 +71,7 @@ export const store = create<UserStore>((set) => ({
     isVerifyToken: async () => {
         try {
             set((state) => ({ dataUser: { ...state.dataUser, isLoading: true, error: null } }))
-            const response = await auth();
+            const response = await AuthApi();
             
             if (!response) {
                 throw new Error('Ваша сессия истекла! Перезайдите на аккаунт');

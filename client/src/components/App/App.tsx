@@ -1,20 +1,16 @@
 import { Route, Routes } from "react-router-dom"
 import { AsideApp } from "../AsideApp/AsideApp"
-// import { HomePage } from "../../pages/HomePage/HomePage"
-// import { SettingsPage  from "../../pages/SettingsPage/SettingsPage"
-// import { LibraryPage  from "../../pages/LibraryPage/LibraryPage"
-// import { FriendsPage  from "../../pages/FriendsPage/FriendsPage"
 import { MainHeader } from "../MainHeader/MainHeader"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { store } from "../../store/store"
 import { useNavigate } from "react-router-dom"
 import { MAIN_APP_ROUTES } from "../../routes/routes"
 
 import "./App.scss"
 
-import { Suspense } from "react";
 import React from "react"
 import HomePage from "../../pages/HomePage/HomePage"
+import { Loading } from "../Loading/Loading"
 
 const GamePortfolioPageLazy = React.lazy(() => import("../../pages/GamePortfolioPage/GamePortfolio"))
 const HomePageLazy = React.lazy(() => import("../../pages/HomePage/HomePage"))
@@ -23,43 +19,41 @@ const LibraryPageLazy = React.lazy(() => import("../../pages/LibraryPage/Library
 const FriendsPageLazy = React.lazy(() => import("../../pages/FriendsPage/FriendsPage"))
 
 
-
-
 export const App = () => {
 	const navigate = useNavigate();
 	const { isVerifyToken, dataUser } = store()
 	const [isTokenVerified, setIsTokenVerified] = useState(false);
 
-	
-	const verifyToken = async () => {
+	const verifyToken = useCallback(async () => {
 		try {
 			await isVerifyToken();
 		} catch (err) {
 			console.error('Token verification error:', err);
 		} finally {
-			setIsTokenVerified(true); 
+			setIsTokenVerified(true);
 		}
-	};
+	}, [isVerifyToken]);
 
 	useEffect(() => {
-		if(!isTokenVerified) {
+		if (!isTokenVerified) {
 			verifyToken();
 		}
-	}, []);
+	}, [isTokenVerified, verifyToken]);
 
-	useEffect(() => {
-		if (!isTokenVerified) return;
-
-		if (!dataUser.isLogin) {
-			console.log('Not logged in, redirecting to auth');
-			navigate(MAIN_APP_ROUTES.AUTH_PAGE);
-		} else {
-			console.log('Logged in, redirecting to home');
-			navigate(MAIN_APP_ROUTES.HOME_PAGE);
-		}
-
+	const redirectPath = useMemo(() => {
+		if (!isTokenVerified) return null;
+		return dataUser.isLogin ? MAIN_APP_ROUTES.HOME_PAGE : MAIN_APP_ROUTES.AUTH_PAGE;
 	}, [dataUser.isLogin, isTokenVerified]);
 
+	useEffect(() => {
+		if (redirectPath) {
+			navigate(redirectPath);
+		}
+	}, [redirectPath]);
+
+	if (dataUser.isLoading || !isTokenVerified) {
+		return <Loading />;
+	}
 	
 	return (
 		<>
@@ -70,7 +64,6 @@ export const App = () => {
 				<div className="main">
 					<div className="main-container">
 					<MainHeader/>
-
 					<Routes>
 						<Route path="/" element={ <HomePage/> } />
 						<Route path="/setting" element={ <SettingsPageLazy/> } />

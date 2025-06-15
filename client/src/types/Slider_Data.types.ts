@@ -1,6 +1,6 @@
 export interface SliderData {
-    Image_Slide: string;
-    Title_Slide: string;
-    Descr_Slide: string;
+    slide_image: string;
+    slide_title: string;
+    slide_descr: string;
 }
 
