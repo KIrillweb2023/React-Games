@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { MAIN_APP_ROUTES } from "../routes/routes";
 import { store } from "../store/store";
 import { PortfolioStore } from "../store/portfolio.store";
-import { AuthLayoutValue } from "../types/AuthenficateProps.types";
+import { AuthCredentials } from "../types/AuthenficateProps.types";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { PortfolioGameType } from "../types/PortfolioGame.types";
+import { Games } from "../types/PortfolioGame.types";
 
 const API_SLIDER_URL = "https://dd48abe606c02835.mokky.dev/SliderItems";
 
 
 export const usePlayGamesReact = () => {
     const { isLoginAuth, isRegistrationAuth } = store();
-    const { useAddGame } = PortfolioStore();
+    const { AddGame, getAllGame } = PortfolioStore();
     const [isLogin, setIsLogin] = useState<boolean>(false);
     const [loader, setLoader] = useState(false);
     const navigate = useNavigate();
 
-    const [AuthValues, setAuthValues] = useState<AuthLayoutValue>({
+    const [AuthValues, setAuthValues] = useState<AuthCredentials>({
         email: "", password: "", nikname: ""
     })
 
@@ -57,10 +57,17 @@ export const usePlayGamesReact = () => {
         }
     }
 
-    const usePortfolioGame: React.FC<PortfolioGameType> = async (values): Promise<any> => {
+    const usePortfolioGame = async (values: Games): Promise<any> => {
         try {
-            await useAddGame({ ...values })
+            await AddGame({ ...values })
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
+    const GetGameAll = async (userId: number) => {
+        try {
+            await getAllGame(userId);
         } catch (err) {
             console.log(err)
         }
@@ -74,6 +81,7 @@ export const usePlayGamesReact = () => {
         setIsLogin, 
         getGamesSlider, 
         loader,
-        usePortfolioGame
+        usePortfolioGame,
+        GetGameAll
     }
 }

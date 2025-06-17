@@ -1,11 +1,16 @@
-import { PortfolioGameType } from "../types/PortfolioGame.types";
+import { GameCredentials, Games } from "../types/PortfolioGame.types";
 import { $host } from "./index.api";
 
-const AddGameApi: React.FC<PortfolioGameType> = async (values) => {
+const AddGameApi = async (values: GameCredentials): Promise<GameCredentials[]> => {
     const { data } = await $host.post("/portfolio/addGame", { ...values })
     return data
 }
 
+const GetAllGamesApi = async (userId: number): Promise<Games[]> => {
+    const { data } = await $host.get(`/portfolio/getAllGames/${userId}/games`);
+    return data
+}
+
 export {
-    AddGameApi
+    AddGameApi, GetAllGamesApi
 }

@@ -3,7 +3,7 @@ import "./LibraryItem.scss";
 import StarIcon from "../../assets/Slider-bg/IconsItemSlide/star.svg";
 import AddIcon from "../../assets/Slider-bg/IconsItemSlide/add.svg";
 import GamesIcon from "../../assets/AsideIcons/routingIcon/games.svg";
-import ItemBgImage from "../../assets/Slider-bg/forzaMotorsport.png";
+import ItemBgImage from "/Slide-image/forzaMotorsport.png";
 
 
 export const LibraryItem = () => {

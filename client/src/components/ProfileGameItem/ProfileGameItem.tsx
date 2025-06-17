@@ -1,14 +1,12 @@
 import "./ProfileGameItem.scss";
 
-import ItemBgImage from "../../assets/Slider-bg/forzaMotorsport.png";
-
-export const ProfileGameItem = () => {
+export const ProfileGameItem = ({ gameTitle, gameImage }: { gameTitle: string, gameImage: string }) => {
     return (
         <>
             <div className="main-portfolio-games_item">
-                <img className="main-portfolio-games_item-img" src={ItemBgImage} alt="forzahorizon" />
+                <img className="main-portfolio-games_item-img" src={gameImage} alt="forzahorizon" />
                 <div className="main-portfolio-games_item-text">
-                    <h5 className="name">Forza Horizon 5</h5>
+                    <h5 className="name">{gameTitle}</h5>
                     <p className="subname">Аркадный симулятор гонок</p>
                     <p className="people">3544 человека, прошли игру</p>
                 </div>

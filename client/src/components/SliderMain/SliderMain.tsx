@@ -4,16 +4,15 @@ import "./SliderMain.scss"
 import Star from "../../assets/Slider-bg/IconsItemSlide/star.svg"
 import Add from "../../assets/Slider-bg/IconsItemSlide/add.svg"
 import { useEffect, useState } from 'react';
-import { SliderData } from '../../types/Slider_Data.types';
 import { usePlayGamesReact } from '../../service/PlayGamesReact';
 
 import { store } from '../../store/store';
-import { PortfolioGameType } from '../../types/PortfolioGame.types';
+import { GameCredentials } from '../../types/PortfolioGame.types';
 
 export const SliderMain = () => {
-    const [gamesSlide, setGamesSlide] = useState<SliderData[]>([]);
+    const [gamesSlide, setGamesSlide] = useState<any[]>([]);
 
-    const { dataUser } = store();
+    const { user } = store();
 
     const { getGamesSlider, usePortfolioGame } = usePlayGamesReact();
 
@@ -21,8 +20,8 @@ export const SliderMain = () => {
         getGamesSlider().then(data => setGamesSlide(data))
     }
     
-    const SubmitGame = async (values: PortfolioGameType) => {
-        await usePortfolioGame({...values})
+    const SubmitGame = async (values: GameCredentials) => {
+        await usePortfolioGame({ ...values })
     }   
 
     useEffect(() => {
@@ -44,7 +43,7 @@ export const SliderMain = () => {
                                     <div className='swiper-slide-buttons'>
                                         <button className='swiper-slide-btn'>Перейти</button>
                                         
-                                        <button className='swiper-slide-btnAdd' onClick={() => SubmitGame({ userId: dataUser.user.id, gameTitle: item.slide_title, gameImage: item.slide_image, gameDescr: item.slide_descr })}>
+                                        <button className='swiper-slide-btnAdd' onClick={() => SubmitGame({ userId: user.id, gameTitle: item.slide_title, gameImage: item.slide_image, gameDescr: item.slide_descr })}>
                                             <img src={Add} alt="add" />
                                             <p className='swiper-slide-btnAdd_text'>Добавить в Game-портфолио</p>
                                         </button>

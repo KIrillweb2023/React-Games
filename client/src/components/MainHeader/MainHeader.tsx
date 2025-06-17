@@ -5,11 +5,11 @@ import SearchIcon from "../../assets/MainHeaderIcon/search.svg";
 import NotifyIcon from "../../assets/MainHeaderIcon/notify.svg";
 
 export const MainHeader = () => {
-    const { dataUser } = store();
+    const { user } = store();
     return (
         <>
             <div className="main-header">
-                <h4 className="main-header-title">Welcome, {dataUser.user?.nikname} </h4>
+                <h4 className="main-header-title">Welcome, {user?.nikname} </h4>
                 <div className="main-header-search">
                     <img src={SearchIcon} alt="search" className="main-header-search_icon" width={40} height={40}/>
                     <input placeholder="Search game" type="text" className="main-header-search_input"/>

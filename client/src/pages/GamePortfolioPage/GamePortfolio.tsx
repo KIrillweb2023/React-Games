@@ -4,7 +4,41 @@ import { TitlePages } from "../../components/TitlePages/TitlePages"
 import "./GamePortfolio.scss";
 
 import AccauntIcon from "../../assets/AsideIcons/logoIcon/LogoReact.svg"
+import { usePlayGamesReact } from "../../service/PlayGamesReact";
+import { store } from "../../store/store";
+import { useEffect, useState } from "react";
+import { PortfolioStore } from "../../store/portfolio.store";
+import { Games } from "../../types/PortfolioGame.types";
+
+
  const GamePortfolio = () => {
+    const { GetGameAll } = usePlayGamesReact();
+    const [myGames, setMyGames] = useState<Games[] | null>([])
+
+    const { game, isLoading } = PortfolioStore();
+    const { user } = store();
+
+    const onRequest = async () => {
+        await GetGameAll(user.id);
+
+        if(!isLoading) {
+            setMyGames(game)
+        }
+
+        console.log(myGames)
+    }
+
+
+    useEffect(() => {
+       onRequest();
+    }, []);
+
+    const contentGame = 
+    (isLoading || !myGames) ? 
+    "Загрузка..." : 
+    myGames.map((item) => (
+        <ProfileGameItem key={item.id} gameImage={item.gameImage} gameTitle={item.gameTitle}/>
+    ))
 
     return (
         <>
@@ -13,10 +47,7 @@ import AccauntIcon from "../../assets/AsideIcons/logoIcon/LogoReact.svg"
                 <div className="main-portfolio-wrapper">
                     <ProfileAside/>
                     <div className="main-portfolio-games">
-                        {/* <h5 className="main-portfolio-games_title">
-                            Список моих игр
-                        </h5> */}
-                        <ProfileGameItem/>
+                        { contentGame }
                         <div className="main-portfolio-games_item reserve">
                             <img src={AccauntIcon} alt="" width={100} />
                             <h3 className="title-reserve">Ваши пройденные игры,</h3>

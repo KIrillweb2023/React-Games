@@ -8,20 +8,20 @@ import { MAIN_APP_ROUTES } from "../../routes/routes"
 
 import "./App.scss"
 
-import React from "react"
-import HomePage from "../../pages/HomePage/HomePage"
-import { Loading } from "../Loading/Loading"
+import React from "react";
+import { Loading } from "../Loading/Loading";
 
 const GamePortfolioPageLazy = React.lazy(() => import("../../pages/GamePortfolioPage/GamePortfolio"))
 const HomePageLazy = React.lazy(() => import("../../pages/HomePage/HomePage"))
 const SettingsPageLazy = React.lazy(() => import("../../pages/SettingsPage/SettingsPage"))
 const LibraryPageLazy = React.lazy(() => import("../../pages/LibraryPage/LibraryPage"))
-const FriendsPageLazy = React.lazy(() => import("../../pages/FriendsPage/FriendsPage"))
+const FriendsPageLazy = React.lazy(() => import("../../pages/FriendsPage/FriendsPage"));
+const AuthPageLazy = React.lazy(() => import("../../pages/AuthPage/AuthPage"));
 
 
 export const App = () => {
 	const navigate = useNavigate();
-	const { isVerifyToken, dataUser } = store()
+	const { isVerifyToken, isLogin, isLoading } = store()
 	const [isTokenVerified, setIsTokenVerified] = useState(false);
 
 	const verifyToken = useCallback(async () => {
@@ -42,41 +42,41 @@ export const App = () => {
 
 	const redirectPath = useMemo(() => {
 		if (!isTokenVerified) return null;
-		return dataUser.isLogin ? MAIN_APP_ROUTES.HOME_PAGE : MAIN_APP_ROUTES.AUTH_PAGE;
-	}, [dataUser.isLogin, isTokenVerified]);
+
+		return isLogin ? MAIN_APP_ROUTES.HOME_PAGE : MAIN_APP_ROUTES.AUTH_PAGE;
+	}, [isLogin, isTokenVerified]);
 
 	useEffect(() => {
 		if (redirectPath) {
-			navigate(redirectPath);
+			navigate(redirectPath, { replace: true });
 		}
 	}, [redirectPath]);
 
-	if (dataUser.isLoading || !isTokenVerified) {
+	if (isLoading || !isTokenVerified) {
 		return <Loading />;
 	}
 	
 	return (
-		<>
-			<div className="app">
-				<AsideApp/>
-			
+		<div className="app">
+			{ isLogin && <AsideApp/> }
+		
+			<div className="main">
+				<div className="main-container">
+					{ isLogin && <MainHeader/> }
 
-				<div className="main">
-					<div className="main-container">
-					<MainHeader/>
 					<Routes>
-						<Route path="/" element={ <HomePage/> } />
-						<Route path="/setting" element={ <SettingsPageLazy/> } />
-						<Route path="/library" element={ <LibraryPageLazy/> } />
-						<Route path="/friends" element={ <FriendsPageLazy/> } />
-						<Route path="/my-game-portfolio" element={ <GamePortfolioPageLazy/> } />
+						<Route path={MAIN_APP_ROUTES.HOME_PAGE} element={ <HomePageLazy/> } />
+						<Route path={MAIN_APP_ROUTES.SETTINGS_PAGE} element={ <SettingsPageLazy/> } />
+						<Route path={MAIN_APP_ROUTES.LIBRARY_PAGE} element={ <LibraryPageLazy/> } />
+						<Route path={MAIN_APP_ROUTES.FRIENDS_PAGE} element={ <FriendsPageLazy/> } />
+						<Route path={MAIN_APP_ROUTES.GAME_PAGE} element={ <GamePortfolioPageLazy/> } />
+
+						<Route path={MAIN_APP_ROUTES.AUTH_PAGE} element={ <AuthPageLazy/> }/>
 					</Routes>
 
-					</div>
 				</div>
-				
 			</div>
-		</>
+		</div>
 	)
 }
 

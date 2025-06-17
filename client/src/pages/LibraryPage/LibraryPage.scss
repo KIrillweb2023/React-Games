@@ -5,6 +5,9 @@
             // width: 100%;
             height: 70px;
             overflow: hidden;
+            .swiper {
+                height: 55px;
+            }
             &_slider {
                 display: flex;
                 column-gap: 10px;
