@@ -1,4 +1,3 @@
-import { TitlePages } from "../../components/TitlePages/TitlePages"
 import "./FriendsPage.scss";
 
 import SearchIcon from "../../assets/MainHeaderIcon/search.svg";
@@ -9,7 +8,6 @@ const FriendsPage = () => {
     return (
         <>
             <div className="main-searching">
-                <TitlePages title="Мои друзья"/>
                 <div className="main-searching-block">
                     <img src={SearchIcon} alt="search" className="main-searching-block_img" width={40} height={40}/>
                     <input placeholder="Search friends" type="text" className="main-searching-block_input"/>

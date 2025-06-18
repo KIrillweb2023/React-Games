@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom"
-import { AsideApp } from "../AsideApp/AsideApp"
 import { MainHeader } from "../MainHeader/MainHeader"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { store } from "../../store/store"
@@ -58,11 +57,9 @@ export const App = () => {
 	
 	return (
 		<div className="app">
-			{ isLogin && <AsideApp/> }
-		
 			<div className="main">
 				<div className="main-container">
-					{ isLogin && <MainHeader/> }
+					{ isLogin && <MainHeader/> } 
 
 					<Routes>
 						<Route path={MAIN_APP_ROUTES.HOME_PAGE} element={ <HomePageLazy/> } />
@@ -70,7 +67,6 @@ export const App = () => {
 						<Route path={MAIN_APP_ROUTES.LIBRARY_PAGE} element={ <LibraryPageLazy/> } />
 						<Route path={MAIN_APP_ROUTES.FRIENDS_PAGE} element={ <FriendsPageLazy/> } />
 						<Route path={MAIN_APP_ROUTES.GAME_PAGE} element={ <GamePortfolioPageLazy/> } />
-
 						<Route path={MAIN_APP_ROUTES.AUTH_PAGE} element={ <AuthPageLazy/> }/>
 					</Routes>
 

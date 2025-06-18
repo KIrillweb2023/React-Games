@@ -8,9 +8,18 @@ export class PortfolioController {
             const user = await User.findByPk(userId);
             if(!user) return res.status(403).json({ message: "Пользователь не найден!" });
 
-            const userPortfolio = await Portfolio.findOrCreate({ where: { userId } });
+            const [userPortfolio] = await Portfolio.findOrCreate({ where: { userId } });
 
             if(!userPortfolio) return res.status(400).json({ message: "Произошла ошибка с портфолио!" });
+
+            const confirmGame = await PortfolioGame.findOne({
+                where: {
+                    portfolioId: userPortfolio.id,
+                    gameTitle
+                }
+            });
+            
+            if(confirmGame) return res.status(400).json({ message: "Данная игра уже есть в портфолио!" });
 
             const newGame = await PortfolioGame.create({
                 portfolioId: userPortfolio.id,
@@ -32,7 +41,7 @@ export class PortfolioController {
                 include: [{
                     model: PortfolioGame,
                     as: 'games', 
-                    attributes: ['id', 'gameTitle', 'gameImage', 'gameDescr']
+                    attributes: [['id', 'gameId'], 'gameTitle', 'gameImage', 'gameDescr']
                 }]
             });
 
@@ -46,5 +55,28 @@ export class PortfolioController {
         }
 
         
+    }
+    async deleteGame(req, res) {
+        const { userId, gameId } = req.params;
+
+        const userPortfolio = await Portfolio.findOne({ where: { userId } });
+        if (!userPortfolio) {
+            return res.status(404).json({ message: "Портфолио не найдено!" });
+        }
+
+        const gameToDelete = await PortfolioGame.findOne({
+            where: {
+                id: gameId,
+                portfolioId: userPortfolio.id 
+            }
+        });
+
+        if (!gameToDelete) {
+            return res.status(404).json({ message: "Игра не найдена в вашем портфолио!" });
+        }        
+
+        await gameToDelete.destroy();
+
+        return res.status(200).json({ message: "Игра успешно удалена из портфолио" });
     }
 }

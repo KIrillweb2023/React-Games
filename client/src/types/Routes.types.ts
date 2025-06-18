@@ -2,6 +2,7 @@ export interface RoutesTypes {
     path: string;
     sourceImage: string;
     altImage: string;
+    pageName: string;
 }
 
 export interface Main_Routes_Types {

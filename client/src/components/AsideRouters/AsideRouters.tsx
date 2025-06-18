@@ -11,9 +11,10 @@ export const AsideRouters = () => {
             {
                 routes.map((item, index) => {
                     return (
-                        <li key={index} className={`aside-list-item ${item.path === locate.pathname ? "aside-list-item_active" : ""} `}>
+                        <li key={index} className={`main-header-list-item ${item.path === locate.pathname ? "main-header-list-item_active" : ""} `}>
                             <Link to={item.path}>
-                                <img src={item.sourceImage} alt={item.altImage} width={30} height={30} />
+                                {/* <img src={item.sourceImage} alt={item.altImage} width={25} height={25} /> */}
+                                <h3>{item.pageName}</h3>
                             </Link>
                         </li>
                     )

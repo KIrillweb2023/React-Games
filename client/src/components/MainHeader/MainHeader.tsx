@@ -1,23 +1,28 @@
 import "./MainHeader.scss";
-import { store } from "../../store/store";
+// import { store } from "../../store/store";
 
-import SearchIcon from "../../assets/MainHeaderIcon/search.svg";
-import NotifyIcon from "../../assets/MainHeaderIcon/notify.svg";
+import { AsideRouters } from "../AsideRouters/AsideRouters";
 
 export const MainHeader = () => {
-    const { user } = store();
+    // const { user } = store();
     return (
         <>
             <div className="main-header">
-                <h4 className="main-header-title">Welcome, {user?.nikname} </h4>
-                <div className="main-header-search">
-                    <img src={SearchIcon} alt="search" className="main-header-search_icon" width={40} height={40}/>
-                    <input placeholder="Search game" type="text" className="main-header-search_input"/>
+                <h4 className="main-header-company">
+                    <span>eX</span>
+                    Game
+                </h4>
+
+                <div className="main-header-list">
+                    <AsideRouters/>
                 </div>
 
-                <div className="main-header-notify">
-                    <img src={NotifyIcon} alt="notify" className="main-header-notify_icon" width={30} height={30} />
+
+                <div className="main-header-auth">
+                    <button className="main-header-auth_btn singup">Sing up</button>
+                    <button className="main-header-auth_btn login">Log in</button>
                 </div>
+
             </div>
         </>
     )

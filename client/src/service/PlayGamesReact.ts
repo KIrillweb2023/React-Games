@@ -5,14 +5,14 @@ import { PortfolioStore } from "../store/portfolio.store";
 import { AuthCredentials } from "../types/AuthenficateProps.types";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Games } from "../types/PortfolioGame.types";
+import { GameCreateData } from "../types/PortfolioGame.types";
 
 const API_SLIDER_URL = "https://dd48abe606c02835.mokky.dev/SliderItems";
 
 
 export const usePlayGamesReact = () => {
     const { isLoginAuth, isRegistrationAuth } = store();
-    const { AddGame, getAllGame } = PortfolioStore();
+    const { addGame, getAllGames, deleteGame } = PortfolioStore();
     const [isLogin, setIsLogin] = useState<boolean>(false);
     const [loader, setLoader] = useState(false);
     const navigate = useNavigate();
@@ -48,18 +48,18 @@ export const usePlayGamesReact = () => {
         try {
             const { data } = await axios.get(API_SLIDER_URL);
 
-            setTimeout(() => {
+            // setTimeout(() => {
                 setLoader(false)
-            }, 2000)
+            // }, 2000)
             return data;
         } catch (error) {
             console.log(error)
         }
     }
 
-    const usePortfolioGame = async (values: Games): Promise<any> => {
+    const usePortfolioGame = async (values: GameCreateData): Promise<any> => {
         try {
-            await AddGame({ ...values })
+            await addGame({ ...values })
         } catch (err) {
             console.log(err)
         }
@@ -67,7 +67,16 @@ export const usePlayGamesReact = () => {
 
     const GetGameAll = async (userId: number) => {
         try {
-            await getAllGame(userId);
+            await getAllGames(userId);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
+    const DeleteGames = async (userId: number, gameId: number) => {
+        try {
+            await deleteGame({userId, gameId});
         } catch (err) {
             console.log(err)
         }
@@ -82,6 +91,7 @@ export const usePlayGamesReact = () => {
         getGamesSlider, 
         loader,
         usePortfolioGame,
-        GetGameAll
+        GetGameAll,
+        DeleteGames
     }
 }
